@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="app_name">EvryFace2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About this awesome app</string>
+    <string name="title_activity_main">EvryFace</string>
+    <string name="infoText_activity_main">Enter userID to search</string>
+    <string name="getButton_activity_main">Get user info</string>
+    <string name="edit_message">Enter text</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_display_person">Person info</string>
+    <string name="mainInfoText">Search and you will find</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="settingsText">Enter your credentials. Note: Your password is stored in the app Base64Encoded</string>
+    <string name="userName">User name: </string>
+    <string name="password">Password: </string>
+
+    <!-- Preferences -->
+    <string name="pref_https">HTTPS</string>
+    <string name="pref_host">Search host</string>
+    <string name="pref_host_default">intranet.guide.se</string>
+    <string name="pref_url">Search URL</string>
+    <string name="pref_url_default">/lib/employee.aspx?usr=</string>
+    <string name="pref_userName">User name</string>
+    <string name="pref_password">Password</string>
+    
+</resources>
