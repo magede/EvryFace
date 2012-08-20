@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,11 +37,11 @@ public class DisplayPersonActivity extends Activity {
     	url = 
     			sharedPref.getString(SettingsActivity.KEY_PREF_HOST, "") +
     			url;
-    	String authString = 
-        		sharedPref.getString(SettingsActivity.KEY_PREF_USR, "") + ":" +
-        		sharedPref.getString(SettingsActivity.KEY_PREF_PWD, "");
         
-    	new DataRetrieverTask().execute(url, authString);
+        String username = sharedPref.getString(SettingsActivity.KEY_PREF_USR, "");
+        String password = sharedPref.getString(SettingsActivity.KEY_PREF_PWD, "");
+
+        new DataRetrieverTask().execute(url, username, password);
     }
 
 
@@ -51,13 +50,11 @@ public class DisplayPersonActivity extends Activity {
         protected byte[] doInBackground(String... connectProps) {
         	
         	String url = connectProps[0];
-			String authString = connectProps[1];
-			
-			// Set authentication
-			String encoded = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
+			String username = connectProps[1];
+			String password = connectProps[2];
 			
 			try {
-				byte[] imageBytes = IntranetConnector.retrievePageHtml(url, encoded);
+				byte[] imageBytes = IntranetConnector.retrievePageHtml(url, username, password);
 				return imageBytes;
 			} catch (Exception e) {
 				e.printStackTrace();
