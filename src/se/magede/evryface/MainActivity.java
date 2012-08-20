@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +35,7 @@ public class MainActivity extends Activity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.menu_settings:
                 settings();
@@ -67,11 +67,11 @@ public class MainActivity extends Activity {
     			sharedPref.getString(SettingsActivity.KEY_PREF_HOST, "") +
     			sharedPref.getString(SettingsActivity.KEY_PREF_URL, "") +
     			searchText;
-    	String authString = 
-        		sharedPref.getString(SettingsActivity.KEY_PREF_USR, "") + ":" +
-        		sharedPref.getString(SettingsActivity.KEY_PREF_PWD, "");
+
+        String username = sharedPref.getString(SettingsActivity.KEY_PREF_USR, "");
+        String password = sharedPref.getString(SettingsActivity.KEY_PREF_PWD, "");
     	
-    	new DataRetrieverTask().execute(url, authString);
+        new DataRetrieverTask().execute(url, username, password);
     }
     
     
@@ -80,19 +80,16 @@ public class MainActivity extends Activity {
         	
 			try {
 				String url = connectProps[0];
-				String authString = connectProps[1];
+				String username = connectProps[1];
+				String password = connectProps[2];
 				
-				// Set authentication
-				String encoded = Base64.encodeToString(authString.getBytes(), Base64.DEFAULT);
-		        
-				String html = new String(IntranetConnector.retrievePageHtml(url, encoded));
+				String html = new String(IntranetConnector.retrievePageHtml(url, username, password));
 				//System.out.println("HTML:" + html);
 				
 				// Transform the HTML to a XML contact card
 				InputStream xslStream = getResources().openRawResource(R.raw.transform);
 				String xmlContactCard = HtmlToXmlParser.parse(html, xslStream);
 				//System.out.println("XML: " + xmlContactCard);
-				
 				return xmlContactCard;
 			} catch (Exception e) {
 				e.printStackTrace();
