@@ -2,14 +2,16 @@ package se.magede.evryface.intranet;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
 import java.net.URL;
 
 import android.util.Log;
 
 public class IntranetConnector {
 
-    public static byte[] retrievePageHtml(String theUrl, String authorization) {
+    public static byte[] retrievePageHtml(String theUrl, final String username, final String password) {
         Log.d(IntranetConnector.class.getName(), "retrievePageHtml >>>");
     	
 		try {
@@ -17,11 +19,15 @@ public class IntranetConnector {
 			URL url = new URL("https://" + theUrl);
 
 			Log.d(IntranetConnector.class.getName(), "URL=" + url.toExternalForm());
-			Log.d(IntranetConnector.class.getName(), "Authorization=" + authorization);
+
+			Authenticator.setDefault(new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password.toCharArray());
+                }
+            });
 			
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty  ("Authorization", "Basic " + authorization);
             
             InputStream is = (InputStream)connection.getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
