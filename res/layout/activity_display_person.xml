@@ -2,39 +2,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingLeft="20dp">
 
-    <LinearLayout
+    <!-- PHONE NUMBER -->
+
+    <TextView
+        android:id="@+id/phoneHeading"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:text="@string/phoneHeading"
+        android:paddingTop="20dp"
+        android:textAppearance="@style/HeaderFont" />
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:background="#000000" /> <!-- Horizontal line -->
 
-        <TextView
-            android:id="@+id/textPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoLink="phone"
-            android:textAppearance="?android:attr/textAppearanceSmall" 
-            android:text="+46 733 776 040"/>
+    <TextView
+        android:id="@+id/textPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="phone"
+        android:text="+46 733 776 040"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android:id="@+id/textEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autoLink="email"
-            android:textAppearance="?android:attr/textAppearanceSmall" 
-            android:text="magnus.edevag@edb.com"/>
+    <!-- EMAIL ADDRESS -->
 
-	    <TextView
-	        android:id="@+id/textOffice"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textAppearance="?android:attr/textAppearanceSmall" 
-	        android:text="Guide Konsult Göteborg AB"/>
-	            
-        </LinearLayout>
+    <TextView
+        android:id="@+id/emailHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/emailHeading"
+        android:paddingTop="10dp"
+        android:textAppearance="@style/HeaderFont" />
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:background="#000000" /> <!-- Horizontal line -->
 
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="email"
+        android:text="magnus.edevag@edb.com"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <!-- OFFICE -->
+
+    <TextView
+        android:id="@+id/officeHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/officeHeading"
+        android:paddingTop="10dp"
+        android:textAppearance="@style/HeaderFont" />
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:background="#000000" /> <!-- Horizontal line -->
+
+    <TextView
+        android:id="@+id/textOffice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guide Konsult Göteborg AB"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ImageView
         android:id="@+id/profileImage"

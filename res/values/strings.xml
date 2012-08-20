@@ -16,6 +16,10 @@
     <string name="userName">User name: </string>
     <string name="password">Password: </string>
 
+    <string name="phoneHeading">PHONE</string>
+    <string name="emailHeading">EMAIL</string>
+    <string name="officeHeading">OFFICE</string>
+    
     <!-- Preferences -->
     <string name="pref_https">HTTPS</string>
     <string name="pref_host">Search host</string>
