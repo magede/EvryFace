@@ -2,6 +2,8 @@ package se.magede.evryface;
 
 import java.io.InputStream;
 
+import org.jsoup.helper.StringUtil;
+
 import se.magede.evryface.intranet.HtmlToXmlParser;
 import se.magede.evryface.intranet.IntranetConnector;
 import android.app.Activity;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "se.magede.evryface.MESSAGE";
@@ -25,7 +28,20 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         
-        setContentView(R.layout.activity_main);
+        // Verify occurrence of mandatory preferences
+    	SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String username = sharedPref.getString(SettingsActivity.KEY_PREF_USR, "");
+        String password = sharedPref.getString(SettingsActivity.KEY_PREF_PWD, "");
+
+        if (StringUtil.isBlank(username) || StringUtil.isBlank(password)) {
+        	TextView infoText = new TextView(this);
+        	infoText.setText("Please make sure you have entered user credentials in settings menu and restart the application");
+        	this.setContentView(infoText);
+        	
+        } else {
+        	setContentView(R.layout.activity_main);
+        }
     }
 
     @Override
